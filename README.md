@@ -40,5 +40,24 @@ Install the following packages on the distro:
 
 ## Firefox custom CSS
 
+Enable userChrome customization in about:config
 
+* Navigate to about:config in the address bar and accept the risks.
 
+* Search for toolkit.legacyUserProfileCustomizations.stylesheets and
+  toggle it to true (by double clicking on it).
+
+### Locate and open your profile folder
+
+Either of the following two methods work:
+
+* Using the Firefox troubleshooting page Click on ☰ ➝ Help ➝ Troubleshooting Information or navigate to about:support in your address bar Under Application Basics, click on the the Open Folder button. You should now see your profile folder.
+
+* Using the Firefox command line Press Shift+F2 Enter the command folder openprofile
+
+### Create the folder and its files
+
+* Inside your profile folder, create a new folder named chrome (all lower case) - the chrome folder should end up in a folder that includes stuff like prefs.js and places.sqlite
+
+* Inside the chrome folder, copy the files ```userChrome.css``` and ```userColors.css```
+  from the firefox_css folder.
