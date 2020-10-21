@@ -1,47 +1,45 @@
-! Copyright (c) 2016-present Arctic Ice Studio <development@arcticicestudio.com>
-! Copyright (c) 2016-present Sven Greb <code@svengreb.de>
+! COLOR SCHEME
+! black > red > green > yellow > blue > magenta > cyan > white
+#define black0                    #373E4D
+#define black1                    #3B4252
+#define black2                    #434C5E
+#define black3                    #4C566A
+#define red0                      #FA5AA4
+#define red1                      #FA74B2
+#define green0                    #2BE491
+#define green1                    #44EB9F
+#define yellow0                   #FA946E
+#define yellow1                   #FAA687
+#define blue0                     #63C5EA
+#define blue1                     #7ACBEA
+#define magenta0                  #CF8EF4
+#define magenta1                  #D8A6F4
+#define cyan0                     #89CCF7
+#define cyan1                     #A1D5F7
+#define white0                    #F9F9F9
+#define white1                    #FFFFFF
 
-! Project:    Nord XResources
-! Version:    0.1.0
-! Repository: https://github.com/arcticicestudio/nord-xresources
-! License:    MIT
+*.foreground:                     white0
+*.background:                     black0
+*.cursorColor:                    white0
 
-#define nord0 #2E3440
-#define nord1 #3B4252
-#define nord2 #434C5E
-#define nord3 #4C566A
-#define nord4 #D8DEE9
-#define nord5 #E5E9F0
-#define nord6 #ECEFF4
-#define nord7 #8FBCBB
-#define nord8 #88C0D0
-#define nord9 #81A1C1
-#define nord10 #5E81AC
-#define nord11 #BF616A
-#define nord12 #D08770
-#define nord13 #EBCB8B
-#define nord14 #A3BE8C
-#define nord15 #B48EAD
 
-*.foreground:   #b1b1b1
-*.background:   #10131a
-*.cursorColor:  nord4
-*fading: 35
-*fadeColor: nord3
+*.color1:                         red0
+*.color2:                         green0
+*.color3:                         yellow0
+*.color4:                         blue0
+*.color5:                         magenta0
+*.color6:                         cyan0
 
-*.color0: nord1
-*.color1: nord11
-*.color2: #99ffbb
-*.color3: nord13
-*.color4: nord9
-*.color5: nord15
-*.color6: nord8
-*.color7: nord5
-*.color8: nord3
-*.color9: nord11
-*.color10: #99ffbb 
-*.color11: nord13
-*.color12: nord9
-*.color13: nord15
-*.color14: nord7
-*.color15: nord6
+*.color9:                         red1
+*.color10:                        green1
+*.color11:                        yellow1
+*.color12:                        blue1
+*.color13:                        magenta1
+*.color14:                        cyan1
+
+*.color0:                         black2
+*.color7:                         white0
+
+*.color8:                         black3
+*.color15:                        white1

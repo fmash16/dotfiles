@@ -9,7 +9,9 @@ export ZSH="/home/fmash/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 # ZSH_THEME="re5et"
-PROMPT=$'\n''%B%F{85}  | %b%f'
+# PROMPT=$'\n''%B%F{224}  | %b%f'
+PROMPT=$'\n''%B%F{224}>> %b%f'
+# PROMPT=$'\n''%B%F{121}  | %b%f'
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -98,3 +100,6 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+# alias record="ffmpeg -f x11grab -y -r 30 -s 1366x768 -i :0.0 -vcodec huffyuv"
+
+alias record="ffmpeg -f x11grab  -s 1366x768 -i :0.0 -r 25 -f alsa -i default -vcodec libx264"

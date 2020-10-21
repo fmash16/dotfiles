@@ -1,5 +1,7 @@
 " Install vim-plug if not already installed
 
+set encoding=utf-8
+
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -44,7 +46,18 @@ let g:jedi#use_splits_not_buffers = "right"
 let g:jedi#use_tabs_not_buffers = 1
 let g:jedi#goto_stubs_command = "" 
 
-Plug 'ervandew/supertab'
+" Plug 'ervandew/supertab'
+
+Plug 'ycm-core/YouCompleteMe'
+let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
+
+" Plug 'nathanaelkane/vim-indent-guides'
+" let g:indent_guides_enable_on_vim_startup = 1
+" let g:indent_guides_guide_size = 1
+" let g:indent_guides_color_change_percent = 3
+" let g:indent_guides_auto_colors = 0
+" autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
+" autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
 
 call plug#end()
 
@@ -83,15 +96,14 @@ set ruler
 " Blink cursor on error instead of beeping (grr)
 set visualbell
 
-" Encoding
-set encoding=utf-8
+" Encoding set encoding=utf-8
 
 " Whitespace
 set wrap
 set textwidth=79
 set formatoptions=tcqrn1
-set tabstop=2
-set shiftwidth=2
+set tabstop=4
+set shiftwidth=4
 set softtabstop=2
 set expandtab
 set noshiftround
@@ -181,9 +193,9 @@ autocmd bufnewfile *.html,*.php 0r ~/.vim/headers/head.html
 
 " highlight current line
 set cursorline
-hi LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE 
+hi LineNr term=bold cterm=NONE ctermfg=White ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 " hi CursorLineNr cterm=NONE ctermfg=Grey ctermbg=NONE
-hi CursorLine cterm=NONE ctermbg=235 ctermfg=NONE
+hi CursorLine cterm=NONE ctermbg=NONE ctermfg=NONE
 
 
 " statusline
@@ -192,7 +204,32 @@ set statusline+=%h%m%r%w                     " flags
 set statusline+=%=
 set statusline+=%3*\ %l\/\%L\ %2*\ line\ 
 
-hi user1 ctermbg=3 ctermfg=0
+hi user1 ctermbg=2 ctermfg=0
 hi user2 ctermbg=4 ctermfg=0
 hi user3 ctermbg=0 ctermfg=NONE
 hi user4 ctermbg=NONE ctermfg=NONE
+
+" "auto close {
+" function! s:CloseBracket()
+"     let line = getline('.')
+"     if line =~# '^\s*\(struct\|class\|enum\) '
+"         return "{\<Enter>};\<Esc>O"
+"     elseif searchpair('(', '', ')', 'bmn', '', line('.'))
+"         " Probably inside a function call. Close it off.
+"         return "{\<Enter>});\<Esc>O"
+"     else
+"         return "{\<Enter>}\<Esc>O"
+"     endif
+" endfunction
+" inoremap <expr> {<Enter> <SID>CloseBracket()
+
+" Expand opening-brace followed by ENTER to a block and place cursor inside
+inoremap {<CR> {<CR>}<Esc>O
+
+" Auto-insert closing parenthesis/brace
+inoremap ( ()<Left>
+inoremap { {}<Left>
+
+" Skip over closing parenthesis/brace
+inoremap <expr> ) getline('.')[col('.')-1] == ")" ? "\<Right>" : ")"
+inoremap <expr> } getline('.')[col('.')-1] == "}" ? "\<Right>" : "}"

@@ -1,0 +1,25 @@
+
+
+X.Org X Server 1.20.8
+X Protocol Version 11, Revision 0
+Build Operating System: Linux 5.4.38-gentoo x86_64 Gentoo
+Current Operating System: Linux oculus 5.4.38-gentoo-x86_64 #1 SMP Wed Aug 26 23:37:10 +06 2020 x86_64
+Kernel command line: BOOT_IMAGE=/boot/vmlinuz-5.4.38-gentoo-x86_64 root=UUID=babf33f1-cf6d-4039-b56b-fa4f92548a7b ro
+Build Date: 27 August 2020  02:26:13PM
+ 
+Current version of pixman: 0.40.0
+	Before reporting problems, check http://wiki.x.org
+	to make sure that you have the latest version.
+Markers: (--) probed, (**) from config file, (==) default setting,
+	(++) from command line, (!!) notice, (II) informational,
+	(WW) warning, (EE) error, (NI) not implemented, (??) unknown.
+(==) Log file: "/var/log/Xorg.0.log", Time: Fri Sep 11 21:40:41 2020
+(==) Using system config directory "/usr/share/X11/xorg.conf.d"
+(II) AMDGPU(G0): [KMS] Kernel modesetting enabled.
+resize called 1366 768
+xinit: connection to X server lost
+
+waiting for X server to shut down XIO:  fatal IO error 2 (No such file or directory) on X server ":0"
+      after 457 requests (457 known processed) with 0 events remaining.
+(II) Server terminated successfully (0). Closing log file.
+

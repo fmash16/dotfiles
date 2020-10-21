@@ -1,0 +1,12 @@
+#! /bin/sh
+
+while true; do
+  DATE=`date "+%a %m/%d  %H:%M:%S"`
+  VOL=`amixer get Master | awk -F'[][]' 'END{ print $2 }'`
+
+  taskbar=`echo -e " 墳$VOL | $DATE \x07"`
+
+  xsetroot -name "$taskbar"
+  sleep 1
+done &
+

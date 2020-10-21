@@ -1,0 +1,130 @@
+diff --git a/config.def.h b/config.def.h
+index a9ac303..1f8dc9a 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -5,6 +5,7 @@ static const unsigned int borderpx  = 1;        /* border pixel of windows */
+ static const unsigned int snap      = 32;       /* snap pixel */
+ static const int showbar            = 1;        /* 0 means no bar */
+ static const int topbar             = 1;        /* 0 means bottom bar */
++static const int focusonwheel       = 0;
+ static const char *fonts[]          = { "monospace:size=10" };
+ static const char dmenufont[]       = "monospace:size=10";
+ static const char col_gray1[]       = "#222222";
+diff --git a/dwm.c b/dwm.c
+index 4782343..4e9296d 100644
+--- a/dwm.c
++++ b/dwm.c
+@@ -164,7 +164,6 @@ static void detachstack(Client *c);
+ static Monitor *dirtomon(int dir);
+ static void drawbar(Monitor *m);
+ static void drawbars(void);
+-static void enternotify(XEvent *e);
+ static void expose(XEvent *e);
+ static void focus(Client *c);
+ static void focusin(XEvent *e);
+@@ -182,7 +181,6 @@ static void manage(Window w, XWindowAttributes *wa);
+ static void mappingnotify(XEvent *e);
+ static void maprequest(XEvent *e);
+ static void monocle(Monitor *m);
+-static void motionnotify(XEvent *e);
+ static void movemouse(const Arg *arg);
+ static Client *nexttiled(Client *c);
+ static void pop(Client *);
+@@ -250,13 +248,11 @@ static void (*handler[LASTEvent]) (XEvent *) = {
+ 	[ConfigureRequest] = configurerequest,
+ 	[ConfigureNotify] = configurenotify,
+ 	[DestroyNotify] = destroynotify,
+-	[EnterNotify] = enternotify,
+ 	[Expose] = expose,
+ 	[FocusIn] = focusin,
+ 	[KeyPress] = keypress,
+ 	[MappingNotify] = mappingnotify,
+ 	[MapRequest] = maprequest,
+-	[MotionNotify] = motionnotify,
+ 	[PropertyNotify] = propertynotify,
+ 	[UnmapNotify] = unmapnotify
+ };
+@@ -425,7 +421,8 @@ buttonpress(XEvent *e)
+ 
+ 	click = ClkRootWin;
+ 	/* focus monitor if necessary */
+-	if ((m = wintomon(ev->window)) && m != selmon) {
++	if ((m = wintomon(ev->window)) && m != selmon
++	    && (focusonwheel || (ev->button != Button4 && ev->button != Button5))) {
+ 		unfocus(selmon->sel, 1);
+ 		selmon = m;
+ 		focus(NULL);
+@@ -445,10 +442,10 @@ buttonpress(XEvent *e)
+ 		else
+ 			click = ClkWinTitle;
+ 	} else if ((c = wintoclient(ev->window))) {
+-		focus(c);
+-		restack(selmon);
+-		XAllowEvents(dpy, ReplayPointer, CurrentTime);
+-		click = ClkClientWin;
++ 		if (focusonwheel || (ev->button != Button4 && ev->button != Button5))
++ 			focus(c);
++ 		XAllowEvents(dpy, ReplayPointer, CurrentTime);
++ 		click = ClkClientWin;
+ 	}
+ 	for (i = 0; i < LENGTH(buttons); i++)
+ 		if (click == buttons[i].click && buttons[i].func && buttons[i].button == ev->button
+@@ -753,25 +750,6 @@ drawbars(void)
+ }
+ 
+ void
+-enternotify(XEvent *e)
+-{
+-	Client *c;
+-	Monitor *m;
+-	XCrossingEvent *ev = &e->xcrossing;
+-
+-	if ((ev->mode != NotifyNormal || ev->detail == NotifyInferior) && ev->window != root)
+-		return;
+-	c = wintoclient(ev->window);
+-	m = c ? c->mon : wintomon(ev->window);
+-	if (m != selmon) {
+-		unfocus(selmon->sel, 1);
+-		selmon = m;
+-	} else if (!c || c == selmon->sel)
+-		return;
+-	focus(c);
+-}
+-
+-void
+ expose(XEvent *e)
+ {
+ 	Monitor *m;
+@@ -943,7 +921,7 @@ grabbuttons(Client *c, int focused)
+ 					XGrabButton(dpy, buttons[i].button,
+ 						buttons[i].mask | modifiers[j],
+ 						c->win, False, BUTTONMASK,
+-						GrabModeAsync, GrabModeSync, None, None);
++						GrabModeSync, GrabModeSync, None, None);
+ 	}
+ }
+ 
+@@ -1118,23 +1096,6 @@ monocle(Monitor *m)
+ }
+ 
+ void
+-motionnotify(XEvent *e)
+-{
+-	static Monitor *mon = NULL;
+-	Monitor *m;
+-	XMotionEvent *ev = &e->xmotion;
+-
+-	if (ev->window != root)
+-		return;
+-	if ((m = recttomon(ev->x_root, ev->y_root, 1, 1)) != mon && mon) {
+-		unfocus(selmon->sel, 1);
+-		selmon = m;
+-		focus(NULL);
+-	}
+-	mon = m;
+-}
+-
+-void
+ movemouse(const Arg *arg)
+ {
+ 	int x, y, ocx, ocy, nx, ny;
