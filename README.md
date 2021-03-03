@@ -12,8 +12,10 @@ manager and terminal. My current configuration is:
 * **Compositor:** picom
 * **File Manager:** ranger
 * **PDF Viewer:** zathura
-* **Browser:** Firefox with custom css.
+* **Browser:** suckless surf with tabbed.
 * **Terminal Multiplexer:** tmux
+
+![](screenshot.jpe)
 
 # Setup
 
