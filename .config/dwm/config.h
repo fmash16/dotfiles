@@ -1,18 +1,18 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 0;        /* border pixel of windows */
-static const unsigned int gappx     = 15;        /* gaps between windows */
+static const unsigned int borderpx  = 2;        /* border pixel of windows */
+static const unsigned int gappx     = 7;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 0;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int focusonwheel       = 0;        // 0 means focus on click 
 static const char *fonts[]          = { "Hack NF:style=Regular:pixelsize=11:antialias=true:autohint=true"};
-static const char dmenufont[]       = "cherry:size=13";
-static const char dmenulines[]      = "20";
-static const char dmenuX[]          = "550";
+static const char dmenufont[]       = "JetBrainsMono Nerd Font:style=Regular:size=10";
+static const char dmenulines[]      = "15";
+static const char dmenuX[]          = "565";
 static const char dmenuY[]          = "200";
-static const char dmenuW[]          = "300";
+static const char dmenuW[]          = "250";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -31,8 +31,8 @@ static const char col_sel[]       = "#235676"; // selected,active tag,window col
 
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray4, col_gray1, "#222222" },
-	[SchemeSel]  = { col_gray4, col_sel, "#333333" },
+	[SchemeNorm] = { col_gray4, col_gray1, "#666666" },
+	[SchemeSel]  = { col_gray4, col_sel, "#fa8f05" },
 	[Scheme03] = { col_white, "#1c455f", col_gray2 },
 	[Scheme04] = { col_white, "#0c1d27", col_gray2 },
 	[Scheme05] = { "#1c455f", "#0c1d27", col_gray2 },
@@ -82,9 +82,9 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-l", dmenulines, "-x", dmenuX, "-y", dmenuY, "-w", dmenuW, "-fn", dmenufont, "-nb", "#10131a", "-nf", col_gray3, "-sb", "#99ffbb", "-sf", "#10131a", NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-l", dmenulines, "-x", dmenuX, "-y", dmenuY, "-w", dmenuW, "-fn", dmenufont, "-nb", "#121212", "-nf", "#ebdbb2", "-sb", "#fa8005", "-sf", "#121212", "-bw", "2",  NULL };
 static const char *termcmd[]  = { "st", "-e", "tmux", NULL };
-static const char *webcmd[]  = { "firefox", NULL };
+static const char *webcmd[]  = { "tabbed", "surf", "-e", NULL };
 static const char *virtcmd[]  = { "virt-manager", NULL };
 static const char *rangercmd[]  = { "st", "-e", "ranger", NULL };
 static const char *flameshotcmd[]  = { "flameshot", "gui", NULL };
@@ -93,10 +93,12 @@ static const char *voldowncmd[]  = { "amixer", "-q","set", "Master", "5%-", "unm
 static const char *volmutecmd[]  = { "amixer", "-q", "Master", "mute", NULL };
 static const char *exitcmd[]  = { "killall", "startdwm", NULL };
 static const char *ncmpcppcmd[]  = { "st", "-e", "ncmpcpp", NULL };
+static const char *systemcmd[]  = { "/home/fmash/.config/dmenu/scripts/test.sh", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_s,      spawn,          {.v = systemcmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_q,      spawn,          {.v = webcmd } },
 	{ MODKEY,                       XK_v,      spawn,          {.v = virtcmd } },

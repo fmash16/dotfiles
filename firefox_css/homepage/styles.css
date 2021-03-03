@@ -2,10 +2,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Teko:wght@400;500&display=swap');
 
 :root {
-  --bg: #10131a;
-  --fg: #ffffff;
-  --secondaryFg: #b3b3b3;
-  --containerBg: #1d232f;
+  --bg: #121212;
+  --fg: #ebdbb2;
+  --secondaryFg: #ebdbb2;
+  --containerBg: #282828;
   --searchBg: var(--containerBg);
   --scrollbarColor: #3f3f3f;
   --fontFamily: 'Roboto Mono', monospace;
@@ -84,14 +84,14 @@ body {
 
 @media only screen and (max-width: 960px) {
   .container {
-    height: auto;
+    height: 40em;
   }
   #clock {
     margin-top: 1em;
   }
   .container > .bookmark-container {
     flex-direction: column;
-    width: 60%;
+    width: 80%;
   }
   .bookmark-container > .bookmark-set {
     width: auto;
@@ -104,7 +104,7 @@ body {
   background-color: var(--containerBg);
   border-radius: 3px;
   font-family: var(--fontFamily);
-  font-size: 0.6rem;
+  font-size: 0.8rem;
   width: 25%;
   height: 12em;
   margin: 0em 0.5em;
@@ -137,7 +137,7 @@ body {
 .bookmark-title {
   font-size: 0.8rem;
   font-weight: 600;
-  color: #99ffbb;
+  color: #fa8005;
   margin: 0em 0em 0.35em 0em;
 }
 .bookmark {

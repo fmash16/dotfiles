@@ -1,11 +1,15 @@
 set selection-clipboard clipboard
 
 set recolor "true"
-/* set recolor-darkcolor "#2c363a" */
-/* set recolor-lightcolor "#E7E7D4" */
+/* set recolor-darkcolor "#ebdbb2" */
+set recolor-lightcolor "#121212"
 
-set recolor-darkcolor "#F9F9F9"
-set recolor-lightcolor "#373E4D"
+/* gruvbox */
+set recolor-darkcolor "#ffcc99"
+/* set recolor-lightcolor "#1d2021" */
+
+/* set recolor-darkcolor "#F9F9F9" */
+/* set recolor-lightcolor "#373E4D" */
 
 /* set recolor-darkcolor "#b1b1b1" */
 /* set recolor-lightcolor "#10131a" */

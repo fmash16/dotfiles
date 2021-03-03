@@ -11,15 +11,15 @@ static char *font2[] = {
 };
 
 
-// static char *font = "Inconsolata:style=Regular:pixelsize=15:antialias=true:autohint=true, Fira Code:style=Bold:pixelsize=14:antialias=true:autohint=true";
-// static char *font = "Comic Shanns:style=Regular:pixelsize=14:antialias=true:autohint=true, Fira Code:style=Bold:pixelsize=14:antialias=true:autohint=true";
-// static char *font = "3270 Condensed:style=Regular:pixelsize=16:antialias=true:autohint=true";
-// static char *font = "creep:style=Regular:pixelsize=14:antialias=true:autohint=true";
-// static char *font = "Cozette:style=Medium:pixelsize=13:antialias=false:autohint=true, Fira Code:style=Bold:pixelsize=14:antialias=true:autohint=true";
+// static char *font = "FiraCode NF:style=Regular:pixelsize=12:antialias=true:autohint=true";
+// static char *font = "JetBrainsMonoMedium Nerd Font:style=Bold:pixelsize=12:antialias=true:autohint=true";
+static char *font = "Comic Mono:style=Normal:pixelsize=13:antialias=true:autohint=true";
 // static char *font = "cherry:style=Regular:pixelsize=15:antialias=false:autohint=true";
-static char *font = "Iosevka Term:pixelsize=14:antialias=true:autohint=true";
-// static char *font = "mplus Nerd Font:style=medium:pixelsize=13:antialias=true:autohint=true";
-static int borderpx = 20;
+// static char *font = "Dina:style=Regular:pixelsize=13:antialias=false:autohint=true";
+// static char *font = "Gohu GohuFont:style=Bold:pixelsize=15:antialias=false:autohint=true";
+// static char *font = "Iosevka:style=Medium:pixelsize=14:antialias=true:autohint=true";
+// static char *font = "SF Mono:style=Regularpixelsize=14:antialias=true:autohint=true";
+static int borderpx = 25;
 
 /*
  * What program is execed by st depends of these precedence rules:
@@ -64,7 +64,7 @@ static unsigned int actionfps = 30;
  * blinking timeout (set to 0 to disable blinking) for the terminal blinking
  * attribute.
  */
-static unsigned int blinktimeout = 0;
+static unsigned int blinktimeout = 1;
 
 /*
  * thickness of underline and bar cursors
@@ -158,7 +158,7 @@ static unsigned int defaultrcs = 257;
  * 6: Bar ("|")
  * 7: Snowman ("☃")
  */
-static unsigned int cursorshape = 6;
+static unsigned int cursorshape = 2;
 
 /*
  * Default columns and rows numbers

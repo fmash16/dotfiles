@@ -8,10 +8,12 @@ export ZSH="/home/fmash/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# ZSH_THEME="re5et"
+# ZSH_THEME="fino-time"
 # PROMPT=$'\n''%B%F{224}  | %b%f'
-PROMPT=$'\n''%B%F{224}>> %b%f'
-# PROMPT=$'\n''%B%F{121}  | %b%f'
+# PROMPT=$'\n''%B%F{224}>> %b%f'
+PROMPT=$'\n''%B%F{208}  | %b%f'
+# PROMPT=$'\n''%K{222}%F{0} fmash %k%b%f '
+# RPROMPT="%F{121}[%D{%f/%m/%y} %D{%L:%M}]"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -71,7 +73,7 @@ CASE_SENSITIVE="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -102,4 +104,9 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 # alias record="ffmpeg -f x11grab -y -r 30 -s 1366x768 -i :0.0 -vcodec huffyuv"
 
+# Render font awesome glyphs correctly
+export LC_ALL="en_US.UTF-8"
+
 alias record="ffmpeg -f x11grab  -s 1366x768 -i :0.0 -r 25 -f alsa -i default -vcodec libx264"
+
+source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
