@@ -8,7 +8,7 @@ manager and terminal. My current configuration is:
 * **WM:** dwm
 * **Terminal:** st
 * **Shell:** zsh
-* **Font:** Iosveka Term
+* **Font:** Comic Sans
 * **Compositor:** picom
 * **File Manager:** ranger
 * **PDF Viewer:** zathura
@@ -23,10 +23,12 @@ CLone the repo and issue the following commands to apply the rice
 
 ```bash
 git clone https://github.com/fmash16/dotfiles
-cp -rv dotfiles/* ~/
+cp -rv dotfiles/.* ~/ && cd ~/ && rm -rv .git/ LICENSE README.md screenshot.jpe setup.sh dotfiles.png .vim/
 
 cd ~/.config/dwm && sudo make clean install
 cd ~/.config/st && sudo make clean install
+cd ~/.config/dmenu && sudo make clean install
+cd ~/.config/tabbed && sudo make clean install
 
 cd ~/ && xrdb .Xresources
 ```

@@ -16,10 +16,54 @@ This personal build has the following patches:
     used to control the size of the master horizontally
   * focusonclick: focus only on mouse click and not just on mouse hovering over
     a window
-  * colorbar: allow defining colors of different parts of the statusbar
-    included with dwm
   * media-volume keys: Allows controlling the voulume with the media volume
     keys (not available at the dwm patches)
+  * statusbar: Removed status bar completely.
+
+# Installing dwm
+
+* On linux systems
+
+    ```bash
+    cd {dwm directory}
+    sudo make clean install
+    ```
+* On FreeBSD systems
+
+Edit the ```config.mk``` file as follows:
+
+```bash
+X11INC = /usr/X11R6/include -> X11INC = /usr/local/include
+X11LIB = /usr/X11R6/lib -> X11LIB = /usr/local/lib
+......
+FREETYPEINC = /usr/include/freetype2 -> FREETYPEINC = /usr/local/include/freetype2
+```
+
+And then run ```make clean install```.
+
+
+# Running dwm
+
+Add the following line to your .xinitrc to start dwm using startx:
+
+    exec dwm
+
+In order to connect dwm to a specific display, make sure that
+the DISPLAY environment variable is set correctly, e.g.:
+
+    DISPLAY=foo.bar:1 exec dwm
+
+(This will start dwm on display :1 of the host foo.bar.)
+
+In order to display status info in the bar, you can do something
+like this in your .xinitrc:
+
+    while xsetroot -name "`date` `uptime | sed 's/.*,//'`"
+    do
+    	sleep 1
+    done &
+    exec dwm
+
 
 
 # Controls
@@ -59,26 +103,4 @@ some custom controls for some apps. The meta key has been changed to windows.
   * MODKEY_equal  : increase gaps between windows
   * MODKEY_Shift_equal : reset gaps 
 
-
-Running dwm
------------
-Add the following line to your .xinitrc to start dwm using startx:
-
-    exec dwm
-
-In order to connect dwm to a specific display, make sure that
-the DISPLAY environment variable is set correctly, e.g.:
-
-    DISPLAY=foo.bar:1 exec dwm
-
-(This will start dwm on display :1 of the host foo.bar.)
-
-In order to display status info in the bar, you can do something
-like this in your .xinitrc:
-
-    while xsetroot -name "`date` `uptime | sed 's/.*,//'`"
-    do
-    	sleep 1
-    done &
-    exec dwm
 
