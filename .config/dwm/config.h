@@ -32,7 +32,7 @@ static const char col_sel[]       = "#235676"; // selected,active tag,window col
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray4, col_gray1, "#666666" },
-	[SchemeSel]  = { col_gray4, col_sel, "#fa8f05" },
+	[SchemeSel]  = { col_gray4, col_sel, "#689d6a" },
 	[Scheme03] = { col_white, "#1c455f", col_gray2 },
 	[Scheme04] = { col_white, "#0c1d27", col_gray2 },
 	[Scheme05] = { "#1c455f", "#0c1d27", col_gray2 },
@@ -67,6 +67,8 @@ static const Layout layouts[] = {
 	{ "[]=",      tile },    /* first entry is default */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
+    { "|M|",      centeredmaster },
+    { ">M>",      centeredfloatingmaster },
 };
 
 /* key definitions */
@@ -82,7 +84,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-l", dmenulines, "-x", dmenuX, "-y", dmenuY, "-w", dmenuW, "-fn", dmenufont, "-nb", "#121212", "-nf", "#ebdbb2", "-sb", "#fa8005", "-sf", "#121212", "-bw", "2",  NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-l", dmenulines, "-x", dmenuX, "-y", dmenuY, "-w", dmenuW, "-fn", dmenufont, "-nb", "#282828", "-nf", "#ebdbb2", "-sb", "#fb6150", "-sf", "#1d2021", "-bw", "2",  NULL };
 static const char *termcmd[]  = { "st", "-e", "tmux", NULL };
 static const char *webcmd[]  = { "tabbed", "surf", "-e", NULL };
 static const char *virtcmd[]  = { "virt-manager", NULL };
@@ -94,11 +96,13 @@ static const char *volmutecmd[]  = { "amixer", "-q", "Master", "mute", NULL };
 static const char *exitcmd[]  = { "killall", "startdwm", NULL };
 static const char *ncmpcppcmd[]  = { "st", "-e", "ncmpcpp", NULL };
 static const char *systemcmd[]  = { "/home/fmash/.config/dmenu/scripts/test.sh", NULL };
+static const char *wificmd[]  = { "/home/fmash/.config/dmenu/scripts/wifi.sh", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_s,      spawn,          {.v = systemcmd } },
+	{ MODKEY|ShiftMask,             XK_w,      spawn,          {.v = wificmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_q,      spawn,          {.v = webcmd } },
 	{ MODKEY,                       XK_v,      spawn,          {.v = virtcmd } },
@@ -124,6 +128,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_w,      setlayout,      {.v = &layouts[2]} },
+    { MODKEY,                       XK_p,      setlayout,      {.v = &layouts[3]} },
+    { MODKEY,                       XK_o,      setlayout,      {.v = &layouts[4]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },

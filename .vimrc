@@ -13,22 +13,22 @@ endif
 "
 call plug#begin('~/.vim/plugged')
 
-Plug 'junegunn/vim-easy-align'
-
+"Plug 'joshdick/onedark.vim'
+Plug 'morhetz/gruvbox'
 Plug 'preservim/nerdtree'
-map <C-n> :NERDTreeToggle<CR>
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
 Plug 'preservim/nerdcommenter'
-let g:NERDSpaceDelims = 1
-let g:NERDCompactSexyComs = 1
-let g:NERDDefaultAlign = 'left'
-let g:NERDAltDelims_java = 1
-let g:NERDCommentEmptyLines = 1
-let g:NERDTrimTrailingWhitespace = 1
-let g:NERDToggleCheckAllLines = 1
-" Plug 'ycm-core/YouCompleteMe'
+Plug 'ycm-core/YouCompleteMe'
+Plug 'Yggdroot/indentLine'
+
 let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_semantic_triggers = {
+	\   'python': [ 're!\w{2}' ],
+	\   'c': [ 're!\w{2}' ],
+	\   'c++': [ 're!\w{2}' ],
+	\   'rust': [ 're!\w{2}' ]
+	\ }
+map <C-n> :NERDTreeToggle<CR>
 
 call plug#end()
 
@@ -135,8 +135,14 @@ map <leader>w :wq<CR>
 map <leader>s :w<CR>
 
 " Color scheme (terminal)
-set t_Co=16
+set t_Co=256
 set background=dark
+"onedark.vim override: Set a custom background color in the terminal
+" set termguicolors
+colorscheme gruvbox
+highlight Normal ctermbg=NONE
+highlight nonText ctermbg=NONE
+highlight Comment cterm=italic gui=italic
 
 " Pane switching
 map <C-j> <C-W>j
@@ -162,6 +168,7 @@ nnoremap <F6> :!pandoc -o out.pdf % --template eisvogel --highlight-style=breeze
 autocmd bufnewfile *.py 0r ~/.vim/headers/head.py
 autocmd bufnewfile *.c 0r ~/.vim/headers/head.c
 autocmd bufnewfile *.html,*.php 0r ~/.vim/headers/head.html
+autocmd bufnewfile Makefile 0r ~/.vim/headers/Makefile
 
 " highlight current line
 set cursorline
@@ -175,8 +182,8 @@ set statusline+=%h%m%r%w                     " flags
 set statusline+=%=
 set statusline+=%3*\ %l\/\%L\ %2*\ line\ 
 
-hi user1 ctermbg=208 ctermfg=0
-hi user2 ctermbg=208 ctermfg=0
+hi user1 ctermbg=119 ctermfg=0
+hi user2 ctermbg=119 ctermfg=0
 hi user3 ctermbg=0 ctermfg=NONE
 hi user4 ctermbg=NONE ctermfg=NONE
 

@@ -1,0 +1,14 @@
+TARGETS = test
+
+CC_CPP = g++
+CC_C = gcc
+
+CFLAGS = -Wall -g -std=c99 -Werror
+
+all: clean $(TARGETS)
+
+$TARGETS:
+	$(CC_C) $(CFLAGS) $@.c -o $@
+
+clean:
+	rm -f $(TARGETS)

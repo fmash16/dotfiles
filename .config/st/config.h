@@ -12,13 +12,15 @@ static char *font2[] = {
 
 
 // static char *font = "FiraCode NF:style=Regular:pixelsize=12:antialias=true:autohint=true";
-// static char *font = "JetBrainsMonoMedium Nerd Font:style=Bold:pixelsize=12:antialias=true:autohint=true";
-static char *font = "Comic Mono:style=Normal:pixelsize=13:antialias=true:autohint=true";
+static char *font = "JetBrainsMonoMedium Nerd Font:style=Bold:pixelsize=12:antialias=true:autohint=true";
+// static char *font = "Comic Mono:style=Normal:pixelsize=13:antialias=true:autohint=true";
 // static char *font = "cherry:style=Regular:pixelsize=15:antialias=false:autohint=true";
-// static char *font = "Dina:style=Regular:pixelsize=13:antialias=false:autohint=true";
+// static char *font = "Dina:style=Regular:pixelsize=12:antialias=false:autohint=true";
 // static char *font = "Gohu GohuFont:style=Bold:pixelsize=15:antialias=false:autohint=true";
 // static char *font = "Iosevka:style=Medium:pixelsize=14:antialias=true:autohint=true";
 // static char *font = "SF Mono:style=Regularpixelsize=14:antialias=true:autohint=true";
+// static char *font = "Tamzen:style=Regular:pixelsize=14:antialias=false:autohint=true";
+// static char *font = "Terminus:style=Regular:pixelsize=14:antialias=false:autohint=true";
 static int borderpx = 25;
 
 /*
@@ -57,7 +59,7 @@ static unsigned int tripleclicktimeout = 600;
 int allowaltscreen = 1;
 
 /* frames per second st should at maximum draw to the screen */
-static unsigned int xfps = 120;
+static unsigned int xfps = 59.79;
 static unsigned int actionfps = 30;
 
 /*

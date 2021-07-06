@@ -1,15 +1,45 @@
-set selection-clipboard clipboard
+set default-bg "#1a2123"
+set default-fg "#d3c6aa"
 
+set statusbar-bg "#404c51"
+set statusbar-fg "#d3c6aa"
+set statusbar-basename true
+
+set inputbar-bg "#1a2123"
+set inputbar-fg "#d3c6aa"
+
+set index-bg "#1a2123"
+set index-fg "#d3c6aa"
+set index-active-bg "#a7c080"
+set index-active-fg "#2b3339"
+
+set completion-bg "#1a2123"
+set completion-fg "#d3c6aa"
+set completion-group-bg "#1a2123"
+set completion-group-fg "#7fbbb3"
+set completion-highlight-bg "#a7c080"
+set completion-highlight-fg "#2b3339"
+
+set notification-bg "#1a2123"
+set notification-fg "#d3c6aa"
+set notification-error-bg "#e68183"
+set notification-error-fg "#2b3339"
+set notification-warning-bg "#e68183"
+set notification-warning-fg "#2b3339"
+
+set highlight-color "#a7c080"
+set highlight-active-color "#7fbbb3"
+set highlight-transparency 0.35
+map <A-n> set nohlsearch
+
+set recolor-lightcolor "#1a2123"
+set recolor-darkcolor "#d3c6aa"
+set recolor-keephue "true"
 set recolor "true"
-/* set recolor-darkcolor "#ebdbb2" */
-set recolor-lightcolor "#121212"
 
-/* gruvbox */
-set recolor-darkcolor "#ffcc99"
-/* set recolor-lightcolor "#1d2021" */
+set render-loading-bg "#1a2123"
+set render-loading-fg "#d3c6aa"
 
-/* set recolor-darkcolor "#F9F9F9" */
-/* set recolor-lightcolor "#373E4D" */
+set selection-clipboard clipboard
+set window-title-home-tilde true
 
-/* set recolor-darkcolor "#b1b1b1" */
-/* set recolor-lightcolor "#10131a" */

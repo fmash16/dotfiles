@@ -11,9 +11,33 @@ export ZSH="/home/fmash/.oh-my-zsh"
 # ZSH_THEME="fino-time"
 # PROMPT=$'\n''%B%F{224}  | %b%f'
 # PROMPT=$'\n''%B%F{224}>> %b%f'
-PROMPT=$'\n''%B%F{208}  | %b%f'
+PROMPT=$'\n''%B%F{114}>>>  %b%f'
 # PROMPT=$'\n''%K{222}%F{0} fmash %k%b%f '
 # RPROMPT="%F{121}[%D{%f/%m/%y} %D{%L:%M}]"
+
+# Show elapsed time of previous command
+function preexec() {
+  timer=$(($(date +%s%0N)/1000000))
+}
+
+function precmd() {
+  if [ $timer ]; then
+    now=$(($(date +%s%0N)/1000000))
+    elapsed=$(($now-$timer))
+
+    if [ "$elapsed" -gt 60000 ]; then
+        elapsed=$((${elapsed}00/60000))
+        elapsed=${elapsed:0:-2}.${elapsed:-2}m
+    elif [ "$elapsed" -gt 1000 ]; then
+        elapsed=${elapsed:0:-3}.${elapsed:-3}s
+    else
+        elapsed=${elapsed}ms
+    fi
+
+    export RPROMPT="%F{cyan}${elapsed} %{$reset_color%}"
+    unset timer
+  fi
+}
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -106,6 +130,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Render font awesome glyphs correctly
 export LC_ALL="en_US.UTF-8"
+export PATH=$PATH:/opt/riscv/bin/
 
 alias record="ffmpeg -f x11grab  -s 1366x768 -i :0.0 -r 25 -f alsa -i default -vcodec libx264"
 
