@@ -15,6 +15,8 @@ call plug#begin('~/.vim/plugged')
 
 "Plug 'joshdick/onedark.vim'
 Plug 'morhetz/gruvbox'
+Plug 'b4skyx/serenade'
+Plug 'sainnhe/everforest'
 Plug 'preservim/nerdtree'
 Plug 'preservim/nerdcommenter'
 Plug 'ycm-core/YouCompleteMe'
@@ -137,12 +139,12 @@ map <leader>s :w<CR>
 " Color scheme (terminal)
 set t_Co=256
 set background=dark
-"onedark.vim override: Set a custom background color in the terminal
-" set termguicolors
-colorscheme gruvbox
-highlight Normal ctermbg=NONE
-highlight nonText ctermbg=NONE
-highlight Comment cterm=italic gui=italic
+set termguicolors
+let g:everforest_background = 'hard'
+colorscheme everforest
+"highlight Normal ctermbg=NONE ctermfg=#d3e8ca
+"highlight nonText ctermbg=NONE
+"highlight Comment cterm=italic gui=italic
 
 " Pane switching
 map <C-j> <C-W>j

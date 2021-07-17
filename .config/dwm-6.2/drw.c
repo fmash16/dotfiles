@@ -10,7 +10,6 @@
 
 #define UTF_INVALID 0xFFFD
 #define UTF_SIZ     4
-#define BORDER_WID 15
 
 static const unsigned char utfbyte[UTF_SIZ + 1] = {0x80,    0, 0xC0, 0xE0, 0xF0};
 static const unsigned char utfmask[UTF_SIZ + 1] = {0xC0, 0x80, 0xE0, 0xF0, 0xF8};
@@ -74,16 +73,6 @@ drw_create(Display *dpy, int screen, Window root, unsigned int w, unsigned int h
 	drw->drawable = XCreatePixmap(dpy, root, w, h, DefaultDepth(dpy, screen));
 	drw->gc = XCreateGC(dpy, root, 0, NULL);
 	XSetLineAttributes(dpy, drw->gc, 1, LineSolid, CapButt, JoinMiter);
-
-  /* XColor color; */
-  /* char orangeDark[] = "#f0d3c9"; */
-  /* XSetWindowAttributes attr = {0}; */
-  /* XParseColor(dpy, attr.colormap, orangeDark, &color); */
-  /* XAllocColor(dpy, attr.colormap, &color); */
-  /* int x=100, y=120; */
-	/* XSetForeground(drw->dpy, drw->gc, drw->scheme[ColBg].pixel); */
-	/* XFillRectangle(drw->dpy, drw->drawable, drw->gc, x, y, w, BORDER_WID); */
-	/* XDrawRectangle(drw->dpy, drw->drawable, drw->gc, x, y, w, BORDER_WID); */
 
 	return drw;
 }
@@ -213,8 +202,6 @@ drw_clr_create(Drw *drw, Clr *dest, const char *clrname)
 	                       DefaultColormap(drw->dpy, drw->screen),
 	                       clrname, dest))
 		die("error, cannot allocate color '%s'", clrname);
-
-    dest->pixel |= 0xff << 24;
 }
 
 /* Wrapper to create color schemes. The caller has to call free(3) on the

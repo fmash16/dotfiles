@@ -1,12 +1,15 @@
 /* See LICENSE file for copyright and license details. */
 
+// Hardware multimedia keys
+#include <X11/XF86keysym.h>
+
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
-static const unsigned int gappx     = 7;        /* gaps between windows */
+static const unsigned int gappx     = 4;        // gaps between windows 
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 0;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const int focusonwheel       = 0;        // 0 means focus on click 
+//static const int focusonwheel       = 0;        // 0 means focus on click 
 static const char *fonts[]          = { "Hack NF:style=Regular:pixelsize=11:antialias=true:autohint=true"};
 static const char dmenufont[]       = "JetBrainsMono Nerd Font:style=Regular:size=10";
 static const char dmenulines[]      = "15";
@@ -17,30 +20,12 @@ static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#dddddd";
-static const char col_purple[]      = "#8c6699";
-static const char col_black[]       = "#000000";
-static const char col_red[]         = "#ff0000";
-static const char col_yellow[]      = "#ffff00";
-static const char col_white[]       = "#ffffff";
-static const char col_green[]       = "#00ff00";
-
-
-static const char col_fg[]        = "#99ffbb"; // foreground color of status bar
-static const char col_bg[]        = "#222222"; // background color of status bar
-static const char col_sel[]       = "#235676"; // selected,active tag,window color of status bar
-
+static const char col_accent[]      = "#689d6a";
+static const char col_bg[]          = "#22272a";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray4, col_gray1, "#666666" },
-	[SchemeSel]  = { col_gray4, col_sel, "#689d6a" },
-	[Scheme03] = { col_white, "#1c455f", col_gray2 },
-	[Scheme04] = { col_white, "#0c1d27", col_gray2 },
-	[Scheme05] = { "#1c455f", "#0c1d27", col_gray2 },
-	[Scheme06] = { "#0c1d27", "#1c455f", col_gray2 },
-	[Scheme07] = { "#bf80ff", "#0c1d27", col_gray2 },
-	[Scheme08] = { col_white, col_black, col_gray2 },
-	[Scheme09] = { col_white, col_black, col_gray2 },
-	[Scheme10] = { col_black, col_white, col_gray2 },
+	[SchemeNorm] = { col_gray4, col_gray1, col_bg },
+	[SchemeSel]  = { col_gray4, col_accent, col_accent },
 };
 
 /* tagging */
@@ -58,7 +43,7 @@ static const Rule rules[] = {
 
 /* layout(s) */
 static const float mfact     = 0.5; /* factor of master area size [0.05..0.95] */
-static const float smfact     = 0; // factor of tiled clients [0.00..0.95] <]
+//static const float smfact     = 0; // factor of tiled clients [0.00..0.95] <]
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 
@@ -67,8 +52,6 @@ static const Layout layouts[] = {
 	{ "[]=",      tile },    /* first entry is default */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
-    { "|M|",      centeredmaster },
-    { ">M>",      centeredfloatingmaster },
 };
 
 /* key definitions */
@@ -84,9 +67,10 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-l", dmenulines, "-x", dmenuX, "-y", dmenuY, "-w", dmenuW, "-fn", dmenufont, "-nb", "#282828", "-nf", "#ebdbb2", "-sb", "#fb6150", "-sf", "#1d2021", "-bw", "2",  NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-l", dmenulines, "-x", dmenuX, "-y", dmenuY, "-w", dmenuW, "-fn", dmenufont, "-nb", col_bg, "-nf", col_accent, "-sb", col_accent, "-sf", col_bg, "-bw", "2",  NULL };
 static const char *termcmd[]  = { "st", "-e", "tmux", NULL };
-static const char *webcmd[]  = { "tabbed", "surf", "-e", NULL };
+//static const char *webcmd[]  = { "tabbed", "surf", "-e", NULL };
+static const char *webcmd[]  = { "firefox", NULL };
 static const char *virtcmd[]  = { "virt-manager", NULL };
 static const char *rangercmd[]  = { "st", "-e", "ranger", NULL };
 static const char *flameshotcmd[]  = { "flameshot", "gui", NULL };
@@ -97,10 +81,12 @@ static const char *exitcmd[]  = { "killall", "startdwm", NULL };
 static const char *ncmpcppcmd[]  = { "st", "-e", "ncmpcpp", NULL };
 static const char *systemcmd[]  = { "/home/fmash/.config/dmenu/scripts/test.sh", NULL };
 static const char *wificmd[]  = { "/home/fmash/.config/dmenu/scripts/wifi.sh", NULL };
+static const char *slockcmd[]  = { "slock", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_l,      spawn,          {.v = slockcmd } },
 	{ MODKEY,                       XK_s,      spawn,          {.v = systemcmd } },
 	{ MODKEY|ShiftMask,             XK_w,      spawn,          {.v = wificmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
@@ -120,8 +106,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_u,      incnmaster,     {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_h,      setmfact,       {.f = -0.05} }, // resize master horizontal
 	{ MODKEY|ShiftMask,             XK_l,      setmfact,       {.f = +0.05} },
-  { MODKEY|ShiftMask,             XK_k,      setsmfact,      {.f = +0.05} }, // resize slaves vertical height
-  { MODKEY|ShiftMask,             XK_j,      setsmfact,      {.f = -0.05} },
+  //{ MODKEY|ShiftMask,             XK_k,      setsmfact,      {.f = +0.05} }, // resize slaves vertical height
+  //{ MODKEY|ShiftMask,             XK_j,      setsmfact,      {.f = -0.05} },
 	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_q,      killclient,     {0} },
@@ -141,10 +127,10 @@ static Key keys[] = {
   { MODKEY,                       XK_minus,  setgaps,        {.i = -2 } },
   { MODKEY,                       XK_equal,  setgaps,        {.i = +2 } },
   { MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
-  { MODKEY|ShiftMask,			XK_Down,	moveresize,		{.v = (int []){ 0, 0, 0, 25 }}},
-  { MODKEY|ShiftMask,			XK_Up,		moveresize,		{.v = (int []){ 0, 0, 0, -25 }}},
-  { MODKEY|ShiftMask,			XK_Right,	moveresize,		{.v = (int []){ 0, 0, 25, 0 }}},
-  { MODKEY|ShiftMask,			XK_Left,	moveresize,		{.v = (int []){ 0, 0, -25, 0 }}},
+  //{ MODKEY|ShiftMask,			XK_Down,	moveresize,		{.v = (int []){ 0, 0, 0, 25 }}},
+  //{ MODKEY|ShiftMask,			XK_Up,		moveresize,		{.v = (int []){ 0, 0, 0, -25 }}},
+  //{ MODKEY|ShiftMask,			XK_Right,	moveresize,		{.v = (int []){ 0, 0, 25, 0 }}},
+  //{ MODKEY|ShiftMask,			XK_Left,	moveresize,		{.v = (int []){ 0, 0, -25, 0 }}},
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
