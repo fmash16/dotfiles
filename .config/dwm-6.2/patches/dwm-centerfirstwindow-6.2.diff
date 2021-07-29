@@ -1,0 +1,67 @@
+diff -up dwm-6.2-orig/config.def.h dwm-6.2-modd/config.def.h
+--- dwm-6.2-orig/config.def.h	2019-02-02 16:55:28.000000000 +0400
++++ dwm-6.2-modd/config.def.h	2021-04-25 16:05:22.569759243 +0400
+@@ -26,9 +26,10 @@ static const Rule rules[] = {
+ 	 *	WM_CLASS(STRING) = instance, class
+ 	 *	WM_NAME(STRING) = title
+ 	 */
+-	/* class      instance    title       tags mask     isfloating   monitor */
+-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
+-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
++	/* class      	     instance    title    tags mask     isfloating   CenterThisWindow?     monitor */
++	{ "st",              NULL,       NULL,    0,            0,     	     1,		           -1 },
++	{ "Gimp",            NULL,       NULL,    0,            1,           0,                    -1 },
++	{ "Firefox",         NULL,       NULL,    1 << 8,       0,           0,                    -1 },
+ };
+ 
+ /* layout(s) */
+diff -up dwm-6.2-orig/dwm.c dwm-6.2-modd/dwm.c
+--- dwm-6.2-orig/dwm.c	2019-02-02 16:55:28.000000000 +0400
++++ dwm-6.2-modd/dwm.c	2021-04-25 16:06:15.368310756 +0400
+@@ -92,7 +92,7 @@ struct Client {
+ 	int basew, baseh, incw, inch, maxw, maxh, minw, minh;
+ 	int bw, oldbw;
+ 	unsigned int tags;
+-	int isfixed, isfloating, isurgent, neverfocus, oldstate, isfullscreen;
++	int isfixed, isfloating, isurgent, neverfocus, oldstate, isfullscreen, CenterThisWindow;
+ 	Client *next;
+ 	Client *snext;
+ 	Monitor *mon;
+@@ -138,6 +138,7 @@ typedef struct {
+ 	const char *title;
+ 	unsigned int tags;
+ 	int isfloating;
++	int CenterThisWindow;
+ 	int monitor;
+ } Rule;
+ 
+@@ -286,6 +287,7 @@ applyrules(Client *c)
+ 
+ 	/* rule matching */
+ 	c->isfloating = 0;
++        c->CenterThisWindow = 0;
+ 	c->tags = 0;
+ 	XGetClassHint(dpy, c->win, &ch);
+ 	class    = ch.res_class ? ch.res_class : broken;
+@@ -298,6 +300,7 @@ applyrules(Client *c)
+ 		&& (!r->instance || strstr(instance, r->instance)))
+ 		{
+ 			c->isfloating = r->isfloating;
++			c->CenterThisWindow = r->CenterThisWindow;
+ 			c->tags |= r->tags;
+ 			for (m = mons; m && m->num != r->monitor; m = m->next);
+ 			if (m)
+@@ -1694,6 +1697,13 @@ tile(Monitor *m)
+ 			resize(c, m->wx + mw, m->wy + ty, m->ww - mw - (2*c->bw), h - (2*c->bw), 0);
+ 			ty += HEIGHT(c);
+ 		}
++
++	if (n == 1 && selmon->sel->CenterThisWindow)
++        resizeclient(selmon->sel,
++                (selmon->mw - selmon->mw * 0.5) / 2,
++                (selmon->mh - selmon->mh * 0.5) / 2,
++                selmon->mw * 0.5,
++                selmon->mh * 0.5);
+ }
+ 
+ void

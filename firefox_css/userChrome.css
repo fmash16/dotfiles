@@ -1,68 +1,12 @@
-* {
-  /*--tab-corner-rounding: 5px;*/
-  --animation-speed: 0.4s;
-  --button-corner-rounding: 30px;
-  --urlbar-container-height: 40px !important;
-  --urlbar-min-height: 30px !important;
-  --urlbar-height: 30px !important;
-  --urlbar-toolbar-height: 38px !important;
-  --moz-hidden-unscrollable: scroll !important;
-  --toolbarbutton-border-radius: 3px !important;
-  --tabs-border-color: transparent;
+/* S E T T I N G S */
+
+:root {
+  --navbarWidth     : 0px; /* Set width of navbar. Use px or vw. */
+  --animationSpeed  : 0.15s;
 }
 
-/* autohide starts here */
 
-#tabs-newtab-button {
-/*   margin-left: 4px !important; */
-  border-radius: 100% !important;
-}
-
-.urlbarView-results {
-/*   padding: 0 6px !important; */
-}
-
-.tabbrowser-tab::before,
-.tabbrowser-tab::after {
-  display: none !important;
-}
-
-.tab-background[selected='true'] {
-  color: #111111 !important;
-}
-
-.tabbrowser-tab {
-  text-align: center !important;
-  justify-content: center;
-  align-items: center;
-/*   margin: 0px 0 0 0 !important; */
-/*   padding-inline: 0 !important; */
-}
-.tabbrowser-tab[selected='true'],
-.tab-label-container[selected='true'] {
-/*   font-size: 0.9rem; */
-}
-@keyframes fade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-#nav-bar:not([customizing]) {
-  --navbar-margin: -37px;
-  margin-top: var(--navbar-margin);
-  margin-bottom: 0;
-  z-index: -100;
-  transition: all 0.3s ease !important;
-  opacity: 0;
-
-}
-#tabs-newtab-button {
-  margin: 0rem 0rem -0.52rem 0rem !important;
-}
+/* autohide */
 #navigator-toolbox:focus-within > #nav-bar,
 #navigator-toolbox:hover > #nav-bar
 {
@@ -72,45 +16,83 @@
   opacity: 1;
 }
 
-#PersonalToolbar {
-  margin-top: 0px;
-}
-#nav-bar .toolbarbutton-1[open='true'] {
-  visibility: visible;
-  opacity: 100;
-}
+#nav-bar:not([customizing]) {
+  --navbar-margin: -35px;
+  margin-top: var(--navbar-margin);
+  margin-bottom: 0;
+  z-index: -100;
+  transition: all 0.3s ease !important;
+  opacity: 0;
 
-:-moz-any(#content, #appcontent) browser {
-  overflow-y: scroll;
-  margin-bottom: 0px !important;
-  overflow-x: scroll;
 }
 
-.tabbrowser-tab[fadein]:not([pinned]) { min-height: 30px !important; max-height: 31px !important; }
 
-/* Self */
-
-#tabbrowser-tabs {
-    --user-tab-rounding: 4px;
-}
-@media (-moz-proton) {
-    .tab-background {
-        border-radius: var(--user-tab-rounding) !important;
-    }
-}
-
-/* Inactive tabs: Shadow style */
-
-@media (-moz-proton) {
-    .tabbrowser-tab:not([selected=true]):not([multiselected=true]) .tab-background {
-        background-color: color-mix(in srgb, currentColor 8%, transparent);
-    }
-}
-
-/* /Font Size for tab / */
-#tabbrowser-tabs .tab-text{
- margin:4px 4px 4px 4px;
- font-size:10pt !important;
- /*font-weight: bold !important;*/
+/* animations */
+toolbarbutton,
+.toolbarbutton-icon,
+.subviewbutton,
+.urlbar-input-box, 
+#identity-box,
+#tracking-protection-icon-container,
+[anonid=urlbar-go-button],
+.urlbar-icon-wrapper,
+#tracking-protection-icon,
+#identity-box image,
+stack,
+vbox,
+tab:not(:active) .tab-background,
+tab:not([beforeselected-visible])::after,
+tab[visuallyselected] .tab-background::before,
+tab[visuallyselected] .tab-background::before,
+.tab-close-button {
+  animation        : var(--animationSpeed) !important;
 }
 
+/*My configs*/
+/*--------------------------------------------------------------------------------------------*/
+#titlebar > .browser-toolbar{ 
+  background: #35302a;
+    border-bottom: 3px solid #111;
+}
+
+
+tab {
+    font-size: 14px !important;
+    font-family: azukifontB !important;
+}
+
+/* Remove gap between pinned and unpineed tabs */
+#tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab[first-visible-unpinned-tab] {
+    margin-inline-start: 0 !important;
+}
+
+/* reduce tab height */
+.tabbrowser-tab { 
+    margin-top: -5.5px !important; 
+    margin-bottom: -5px !important; 
+}
+
+/* gap between taps */
+.tabbrowser-tab {
+	padding-inline: 0px !important;
+}
+
+.tabbrowser-tab .tab-close-button {
+  visibility: collapse !important;
+}
+
+.tabbrowser-tab[selected] .tab-label {
+    color: #fabd2f !important;
+    font-weight: bold !important;
+}
+
+.tabbrowser-tab[selected] .tab-content {
+    background: #35302a ! important;
+}
+
+.tabbrowser-tab:not([selected]) .tab-label {
+    color: #f7daa2 !important;
+}
+.tabbrowser-tab:not([selected]) .tab-content {
+    background: #35302a;
+}

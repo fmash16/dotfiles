@@ -1,9 +1,12 @@
 !-- Xft settings -- !
-Xft.dpi:        96
+Xft.dpi:        100
 Xft.antialias:  true
 Xft.rgba:       rgb
 Xft.hinting:    true
 Xft.hintstyle:  hintfull
+
+st.font:    Comic Mono:style=Regular:pixelsize=13
+!st.font:    azukifontB:style=Regular:pixelsize=14
 
 /*st.borderpx:          8*/
 /*st.font: 							Sarasa Term K:pixelsize=18:antialias=true*/
@@ -11,8 +14,11 @@ Xft.hintstyle:  hintfull
 /*st.alpha: 0.94*/
 
 ! special
-*.foreground:   #c4e0b8
-*.background:   #22272a
+*.foreground:   #f7daa2
+!*.background:   #22272a
+*.background:   #35302a
+! Soft Contrast
+!*.background:   #2a2f33 
 *.cursorColor:  #bfddb2
 
 ! black

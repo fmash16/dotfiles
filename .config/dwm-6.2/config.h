@@ -4,27 +4,28 @@
 #include <X11/XF86keysym.h>
 
 /* appearance */
-static const unsigned int borderpx  = 2;        /* border pixel of windows */
+static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int gappx     = 4;        // gaps between windows 
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 0;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 //static const int focusonwheel       = 0;        // 0 means focus on click 
 static const char *fonts[]          = { "Hack NF:style=Regular:pixelsize=11:antialias=true:autohint=true"};
-static const char dmenufont[]       = "JetBrainsMono Nerd Font:style=Regular:size=10";
-static const char dmenulines[]      = "15";
-static const char dmenuX[]          = "565";
-static const char dmenuY[]          = "200";
-static const char dmenuW[]          = "250";
+static const char dmenufont[]       = "azukifontB:style=Regular:size=12";
+static const char dmenulines[]      = "53";
+static const char dmenuX[]          = "0";
+static const char dmenuY[]          = "0";
+static const char dmenuW[]          = "300";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#dddddd";
-static const char col_accent[]      = "#689d6a";
-static const char col_bg[]          = "#22272a";
+//static const char col_accent[]      = "#689d6a";
+static const char col_accent[]      = "#000000";
+static const char col_bg[]          = "#f7daa2";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray4, col_gray1, col_bg },
+	[SchemeNorm] = { col_gray4, col_gray1, "#222" },
 	[SchemeSel]  = { col_gray4, col_accent, col_accent },
 };
 
@@ -67,7 +68,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-l", dmenulines, "-x", dmenuX, "-y", dmenuY, "-w", dmenuW, "-fn", dmenufont, "-nb", col_bg, "-nf", col_accent, "-sb", col_accent, "-sf", col_bg, "-bw", "2",  NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-p", " ", "-m", dmenumon, "-l", dmenulines, "-x", dmenuX, "-y", dmenuY, "-w", dmenuW, "-fn", dmenufont, "-nb", col_bg, "-nf", col_accent, "-sb", col_accent, "-sf", col_bg, "-bw", "2",  NULL };
 static const char *termcmd[]  = { "st", "-e", "tmux", NULL };
 //static const char *webcmd[]  = { "tabbed", "surf", "-e", NULL };
 static const char *webcmd[]  = { "firefox", NULL };

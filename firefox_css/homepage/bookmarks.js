@@ -3,25 +3,26 @@ const bookmarks = [
   {
     title: "Daily",
     links: [
+      { name: "/github", url: "https://github.com" },
       { name: "/mail", url: "https://inbox.google.com" },
-      { name: "/git", url: "https://github.com" },
       { name: "/drive", url: "https://drive.google.com" },
     ],
   },
   {
     title: "Media",
     links: [
-      { name: "/yt", url: "https://youtube.com" },
-      { name: "/nf", url: "https://netflix.com" },
-      { name: "/sc", url: "https://soundcloud.com" },
+      { name: "/youtube", url: "https://youtube.com" },
+      { name: "/soundcloud", url: "https://soundcloud.com" },
+      { name: "/netflix", url: "https://netflix.com" },
     ],
   },
   {
     title: "Social",
     links: [
-      { name: "/t", url: "https://twitter.com" },
-      { name: "/r", url: "https://reddit.com" },
-      { name: "/ig", url: "https://instagram.com" },
+      { name: "/twitter", url: "https://twitter.com" },
+      { name: "/reddit", url: "https://reddit.com" },
+      { name: "/facebook", url: "https://instagram.com" },
+      { name: "/instagram", url: "https://instagram.com" },
     ],
   },
 ];

@@ -13,9 +13,8 @@ endif
 "
 call plug#begin('~/.vim/plugged')
 
-"Plug 'joshdick/onedark.vim'
 Plug 'morhetz/gruvbox'
-Plug 'b4skyx/serenade'
+"Plug 'b4skyx/serenade'
 Plug 'sainnhe/everforest'
 Plug 'preservim/nerdtree'
 Plug 'preservim/nerdcommenter'
@@ -142,9 +141,13 @@ set background=dark
 set termguicolors
 let g:everforest_background = 'hard'
 colorscheme everforest
-"highlight Normal ctermbg=NONE ctermfg=#d3e8ca
+
+let g:gruvbox_contrast_light = 'soft'
+let g:gruvbox_contrast_dark = 'soft'
+"colorscheme gruvbox
+"highlight Normal ctermbg=NONE ctermfg=NONE
 "highlight nonText ctermbg=NONE
-"highlight Comment cterm=italic gui=italic
+highlight Comment cterm=italic gui=italic
 
 " Pane switching
 map <C-j> <C-W>j
@@ -184,8 +187,8 @@ set statusline+=%h%m%r%w                     " flags
 set statusline+=%=
 set statusline+=%3*\ %l\/\%L\ %2*\ line\ 
 
-hi user1 ctermbg=119 ctermfg=0
-hi user2 ctermbg=119 ctermfg=0
+hi user1 ctermbg=3 ctermfg=0
+hi user2 ctermbg=3 ctermfg=0
 hi user3 ctermbg=0 ctermfg=NONE
 hi user4 ctermbg=NONE ctermfg=NONE
 
