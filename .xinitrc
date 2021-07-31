@@ -9,7 +9,7 @@ feh --bg-scale ~/Pictures/girl.jpg
 #feh --bg-scale ~/index.jpe
 
 export AWT_TOOLKIT=MToolkit
-set WMName="LG3D"
+#set WMName="LG3D"
 
 # Set background
 
