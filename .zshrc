@@ -12,8 +12,8 @@ export ZSH="/home/fmash/.oh-my-zsh"
 # PROMPT=$'\n''%B%F{224}  | %b%f'
 # PROMPT=$'\n''%B%F{224}>> %b%f'
 PROMPT=$'\n''%B%F{114}>>>  %b%f'
-# PROMPT=$'\n''%K{222}%F{0} fmash %k%b%f '
-# RPROMPT="%F{121}[%D{%f/%m/%y} %D{%L:%M}]"
+ #PROMPT=$'\n''%K{222}%F{255} fmash %k%b%f '
+ #RPROMPT="%F{121}[%D{%f/%m/%y} %D{%L:%M}]"
 
 # Show elapsed time of previous command
 function preexec() {
@@ -46,7 +46,18 @@ function precmd() {
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
-CASE_SENSITIVE="true"
+#CASE_SENSITIVE="true"
+autoload -Uz compinit && compinit
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+
+export HISTFILE=~/.zsh_history
+export HISTSIZE=10000
+export SAVEHIST=10000
+
+setopt INC_APPEND_HISTORY
+setopt EXTENDED_HISTORY
+setopt HIST_FIND_NO_DUPS
+setopt appendhistory
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
@@ -97,9 +108,6 @@ CASE_SENSITIVE="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-autosuggestions)
-
-source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
@@ -130,8 +138,23 @@ source $ZSH/oh-my-zsh.sh
 
 # Render font awesome glyphs correctly
 export LC_ALL="en_US.UTF-8"
-export PATH=$PATH:/opt/riscv/bin/
+export PATH=$PATH:/opt/riscv/bin/:/home/fmash/.local/bin/
+export _JAVA_AWT_WM_NONREPARENTING=1
 
-alias record="ffmpeg -f x11grab  -s 1366x768 -i :0.0 -r 25 -f alsa -i default -vcodec libx264"
+alias ls="ls --color=auto"
+alias ll="ls -lh"
+alias la="ls -la"
+#alias record="ffmpeg -f x11grab  -s 1366x768 -i :0.0 -r 25 -f alsa -i default -vcodec libx264"
+alias record="ffmpeg -f x11grab -s 1920x1080 -r 30 -i :0.0 -qscale 0 -vcodec huffyuv"
+alias gridlabd="docker run --rm -it --net=host --env=\"DISPLAY\" --volume=\"\$HOME/.Xauthority:/root/.Xauthority:rw\" -v \$PWD:/model gridlabd /bin/tcsh"
+alias virt-manager="GTK_THEME=klaus virt-manager"
+alias docker-me="docker run --rm -it --net=host --env=\"DISPLAY\" --volume=\"\$HOME/.Xauthority:/root/.Xauthority:rw\" -v \"\$HOME:/home/\`whoami\`\" --volume /etc/passwd:/etc/passwd:ro --volume /etc/group:/etc/group:ro --user \`id -u\`:\`id -g\`"
 
-source ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+alias docker-root="docker run --rm -it --net=host --env=\"DISPLAY\" --volume=\"\$HOME/.Xauthority:/root/.Xauthority:rw\" -v \"\$HOME:/home/\`whoami\`\" "
+
+#alias wine="winetricks sandbox && wine"
+
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+bindkey '^ ' autosuggest-accept

@@ -1,54 +1,40 @@
 !-- Xft settings -- !
-Xft.dpi:        100
-Xft.antialias:  true
+Xft.dpi:        98 
+Xft.antialias:  true 
 Xft.rgba:       rgb
 Xft.hinting:    true
 Xft.hintstyle:  hintfull
 
-st.font:    Comic Mono:style=Regular:pixelsize=13
-!st.font:    azukifontB:style=Regular:pixelsize=14
+Xcursor.theme: Chicago 95 Emerald 
+Xcursor.size: 16
+!Xcursor.theme: Amiga-Retro-Modern
 
-/*st.borderpx:          8*/
-/*st.font: 							Sarasa Term K:pixelsize=18:antialias=true*/
-/*st.opacity: 255*/
-/*st.alpha: 0.94*/
+*.gtk.icons: Chicago95
 
-! special
-*.foreground:   #f7daa2
-!*.background:   #22272a
-*.background:   #35302a
-! Soft Contrast
-!*.background:   #2a2f33 
-*.cursorColor:  #bfddb2
+!st.font:    MxPlus ToshibaSat 8x14:style=Regular:pixelsize=15
+!st.font:    BmPlus IBM VGA 8x16:style=Regular:pixelsize=15
+!st.font:    cherry:style=Regular:antialias=false:pixelsize=15
+st.font:    Terminus:style=Regular:antialias=false:pixelsize=15
+!st.font:    GohuFont:style=Regular:antialias=false:pixelsize=15
+!st.font:    Dina:style=Regular:pixelsize=15
+!st.font:    azukifontB:style=Regular:pixelsize=15
+!st.font:    agave Nerd Font:style=Regular:pixelsize=15
+!st.font:    SF Mono:style=Regular:pixelsize=13
+!st.font:    Liberation Mono:style=Regular:pixelsize=13
+!st.font:    Unifont:style=Regular:pixelsize=15
+!st.font:    Comic Mono:style=Regular:pixelsize=14
+!st.font:    IBM 3161:style=Medium:antialias=false:pixelsize=15
+!st.font:    GohuFont:style=Regular:antialias=false:pixelsize=15
 
-! black
-*.color0:       #504945
-*.color8:       #504945
+! Spacing between lines
+st.chscale: 1.05 
 
-! red
-*.color1:       #ea5252
-*.color9:       #ea5252
+!st.alpha:  0.97
 
-! green
-*.color2:       #ACB765
-*.color10:      #ACB765
+st.borderpx:         4 
 
-! yellow
-*.color3:       #dbbc7f 
-*.color11:      #dbbc7f 
 
-! blue
-*.color4:       #82abbc
-*.color12:      #82abbc
-
-! magenta
-*.color5:       #b18a97
-*.color13:      #b18a97
-
-! cyan
-*.color6:       #88b482
-*.color14:      #89b482
-
-! white
-*.color7:       #bfddb2
-*.color15:      #bfddb2
+!! Dark theme
+*.cursorColor:  #ff9999
+*.foreground:   #d3c6aa
+*.background:   #0e0e0e

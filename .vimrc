@@ -1,11 +1,10 @@
 " Install vim-plug if not already installed
-
 set encoding=utf-8
 
 if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+ "silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+   "\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+ "autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 " PLUGINS (vim-plug)
@@ -13,9 +12,6 @@ endif
 "
 call plug#begin('~/.vim/plugged')
 
-Plug 'morhetz/gruvbox'
-"Plug 'b4skyx/serenade'
-Plug 'sainnhe/everforest'
 Plug 'preservim/nerdtree'
 Plug 'preservim/nerdcommenter'
 Plug 'ycm-core/YouCompleteMe'
@@ -24,11 +20,11 @@ Plug 'Yggdroot/indentLine'
 let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_semantic_triggers = {
-	\   'python': [ 're!\w{2}' ],
-	\   'c': [ 're!\w{2}' ],
-	\   'c++': [ 're!\w{2}' ],
-	\   'rust': [ 're!\w{2}' ]
-	\ }
+  \   'python': [ 're!\w{2}' ],
+  \   'c': [ 're!\w{2}' ],
+  \   'c++': [ 're!\w{2}' ],
+  \   'rust': [ 're!\w{2}' ]
+  \ }
 map <C-n> :NERDTreeToggle<CR>
 
 call plug#end()
@@ -38,40 +34,18 @@ call plug#end()
 " ==================================================================================
 
 let mapleader="\<space>"
-
 imap jj <Esc>
 
 set timeoutlen=2000
-
 set laststatus=2
-" Don't try to be vi compatible
 set nocompatible
-
-" Helps force plugins to load correctly when it is turned back on below
-filetype off
-
-" Turn on syntax highlighting
+filetype on
 syntax on
-
-" For plugins to load correctly
 filetype plugin indent on
-
-" Security
 set modelines=0
-
-" Show line numbers
-" set number relativenumber
 set number
-
-" Show file stats
 set ruler
-
-" Blink cursor on error instead of beeping (grr)
 set visualbell
-
-" Encoding set encoding=utf-8
-
-" Whitespace
 set wrap
 set textwidth=79
 set formatoptions=tcqrn1
@@ -80,32 +54,11 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 set noshiftround
-
-" Cursor motion
-set scrolloff=3
-set backspace=indent,eol,start
-set matchpairs+=<:> " use % to jump between pairs
-runtime! macros/matchit.vim
-
-" Move up/down editor lines
-nnoremap j gj
-nnoremap k gk
-
-" Allow hidden buffers
 set hidden
-" Rendering
 set ttyfast
-
-" Status bar
 set laststatus=2
-
-" Last line
 set showmode
 set showcmd
-
-" Searching
-nnoremap / /\v
-vnoremap / /\v
 set hlsearch
 set incsearch
 set ignorecase
@@ -113,49 +66,22 @@ set smartcase
 set showmatch
 map <leader><space> :let @/=''<cr> " clear search
 
-" Remap help key.
-inoremap <F1> <ESC>:set invfullscreen<CR>a
-nnoremap <F1> :set invfullscreen<CR>
-vnoremap <F1> :set invfullscreen<CR>
-
-" Textmate holdouts
-
-" Formatting
-map <leader>q gqip
-
-" Visualize tabs and newlines
-set listchars=tab:▸\ ,eol:¬
-" Uncomment this to enable by default:
-" set list " To enable by default
-" Or use your leader key + l to toggle on/off
-map <leader>l :set list!<CR> " Toggle tabs and EOL
-
-" Use \+q/qw to quit and save
 map <leader>q :q!<CR>
 map <leader>w :wq<CR>
 map <leader>s :w<CR>
 
-" Color scheme (terminal)
+" Colorscheme
 set t_Co=256
+"set termguicolors
 set background=dark
-set termguicolors
-let g:everforest_background = 'hard'
-colorscheme everforest
+colorscheme patine
+"hi Normal guibg=NONE ctermbg=NONE guifg=NONE
+"hi Comment term=italic guibg=NONE guifg=#888888
 
-let g:gruvbox_contrast_light = 'soft'
-let g:gruvbox_contrast_dark = 'soft'
-"colorscheme gruvbox
-"highlight Normal ctermbg=NONE ctermfg=NONE
-"highlight nonText ctermbg=NONE
-highlight Comment cterm=italic gui=italic
-
-" Pane switching
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
-
-map <F7> <C-W>w
+set cursorline
+"hi LineNr term=bold cterm=NONE ctermfg=Darkgrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
+"hi CursorLineNr cterm=NONE ctermfg=Grey ctermbg=NONE gui=underline guibg=#22222a guifg=#ff9999 
+"hi CursorLine cterm=NONE ctermbg=NONE ctermfg=NONE guibg=#22222a
 
 " python run code within vim 
 nnoremap <F9> :exec 'w !python' shellescape(@%, 1)<cr>
@@ -176,10 +102,6 @@ autocmd bufnewfile *.html,*.php 0r ~/.vim/headers/head.html
 autocmd bufnewfile Makefile 0r ~/.vim/headers/Makefile
 
 " highlight current line
-set cursorline
-hi LineNr term=bold cterm=NONE ctermfg=Darkgrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
-" hi CursorLineNr cterm=NONE ctermfg=Grey ctermbg=NONE
-hi CursorLine cterm=NONE ctermbg=NONE ctermfg=NONE
 
 " statusline
 set statusline=%1*\ fmash16\ %3*\ %f\ %4*
@@ -187,9 +109,9 @@ set statusline+=%h%m%r%w                     " flags
 set statusline+=%=
 set statusline+=%3*\ %l\/\%L\ %2*\ line\ 
 
-hi user1 ctermbg=3 ctermfg=0
-hi user2 ctermbg=3 ctermfg=0
-hi user3 ctermbg=0 ctermfg=NONE
+hi user1 ctermbg=234 ctermfg=6
+hi user2 ctermbg=234 ctermfg=6
+hi user3 ctermbg=235 ctermfg=NONE
 hi user4 ctermbg=NONE ctermfg=NONE
 
 " Expand opening-brace followed by ENTER to a block and place cursor inside
